@@ -31,9 +31,11 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     breakshots: {
       main: {
-        options: {},
+        options: {
+          cwd: 'test/fixtures/'
+        },
         files: {
-          'tmp/': ['test/fixtures/test.html', 'test/fixtures/test2.html']
+          'tmp/': ['test/fixtures/**/*']
         }
       }
     },

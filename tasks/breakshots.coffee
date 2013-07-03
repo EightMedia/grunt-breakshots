@@ -18,6 +18,7 @@ module.exports = (grunt)->
 
     # Merge task-specific and/or target-specific options with these defaults.
     options = @options
+      cwd: '.'
       ext: 'png'
       pattern: "FILENAME.BREAKPOINT.EXT"
       breakpoints: [240,320,480,640,700,768,1024,1280]
@@ -37,7 +38,7 @@ module.exports = (grunt)->
             true
 
           .map (filepath)->
-            dest: group.dest
+            dest: "#{group.dest}/#{path.relative(options.cwd, path.dirname(filepath))}"
             path: filepath
 
       Array::push.apply pages, p
@@ -65,7 +66,6 @@ module.exports = (grunt)->
               page.dest,
               page.path]
           , (err, result)->
-            console.log(arguments)
             if err then done() else next()
       ,
       # All screenshots have been made

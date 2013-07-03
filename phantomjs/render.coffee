@@ -17,7 +17,7 @@ destFile = (breakpoint)->
     .replace('FILENAME', args.source.split("/").slice(-1))
     .replace('EXT', args.ext)
     .replace('BREAKPOINT', breakpoint)
-  "#{args.dest}#{file}"
+  "#{args.dest}/#{file}"
 
 
 ###
