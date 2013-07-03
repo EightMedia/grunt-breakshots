@@ -22,32 +22,27 @@ grunt.loadNpmTasks('grunt-breakshots');
 ### Overview
 In your project's Gruntfile, add a section named `breakshots` to the data object passed into `grunt.initConfig()`.
 
-```js
-grunt.initConfig({
-  breakshots: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
-})
-```
 
 ### Options
 
-#### options.separator
+#### options.breakpoints
+Type: `Array`
+Default value: `[240,320,480,640,700,768,1024,1280]`
+
+#### options.pattern
 Type: `String`
-Default value: `',  '`
+Default value: `'FILENAME.BREAKPOINT.EXT'`
 
-A string value that is used to do something with whatever.
+#### options.ext
+Type: `String`
+Default value: `'png'`
 
-#### options.punctuation
+`jpg` is also possible.
+
+#### options.cwd
 Type: `String`
 Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
 
 ### Usage Examples
 
@@ -59,28 +54,12 @@ grunt.initConfig({
   breakshots: {
     options: {},
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'breakshots/': ['index.html','contact.html','**/*.html']
     },
   },
 })
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  breakshots: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
