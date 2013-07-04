@@ -1,0 +1,110 @@
+html, body, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+html, body {
+  position: relative;
+  height: 100%;
+  background: #eee;
+}
+
+body {
+  font: 1em/1.4em Helvetica, Arial, sans-serif
+}
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 30px;
+  margin: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  padding: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  margin: 2px;
+  background: rgba(0, 0, 0, 0.2);
+  border: solid 1px rgba(255, 255, 255, .3)
+}
+
+.nav {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 50px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #333;
+  color: #fff;
+  z-index: 100;
+  -webkit-transition: width .3s;
+  -moz-transition: width .3s;
+  transition: width .3s;
+}
+
+.nav:hover {
+  width: 350px;
+}
+
+.nav ul {
+  margin: 15px 0;
+  opacity: .3;
+}
+
+.nav:hover ul {
+  opacity: 1;
+}
+
+.nav a {
+  padding: 5px 20px;
+  color: #999;
+  text-decoration: none;
+  display: block;
+  white-space: nowrap;
+}
+
+.nav .active a { background: #444; color: #fff; }
+
+.view {
+  position: absolute;
+  overflow: auto;
+  left: 50px;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background: #eee;
+}
+
+.view h1 {
+  margin: 20px;
+}
+
+.view h3 {
+  margin: 0 0 20px;
+  background: #eee;
+}
+
+.view ul {
+  white-space: nowrap;
+  padding: 0 20px 20px;
+}
+
+.view li {
+  display: inline-block;
+  vertical-align: top;
+  margin: 20px;
+}
+
+.view li img {
+  display: inline;
+  vertical-align: top;
+  background: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+}

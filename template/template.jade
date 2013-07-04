@@ -1,0 +1,19 @@
+!!!5
+
+html
+  head
+    title Breakshots #{item.filename}
+    include style.css
+    base(href=base)
+  body
+    .nav
+      ul
+        for p in pages
+          li: a(href=p.filename)=p.filename
+
+    .view
+      ul
+        for breakpoint in item.breakpoints
+          li
+            h3=breakpoint.size
+            img(src=breakpoint.file, width=breakpoint.size)

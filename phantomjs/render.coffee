@@ -4,8 +4,9 @@ args =
   ext: system.args[1]
   breakpoints: system.args[2].split(",")
   pattern : system.args[3]
-  dest : system.args[4]
-  source : system.args[5]
+  destDir : system.args[4]
+  destFilename : system.args[5]
+  source : system.args[6]
 
 webpage = require "webpage"
 page = webpage.create()
@@ -14,11 +15,11 @@ page = webpage.create()
 # get destination filename
 destFile = (breakpoint)->
   file = args.pattern
-    .replace('FILENAME', args.source.split("/").slice(-1))
+    .replace('FILENAME', args.destFilename)
     .replace('EXT', args.ext)
     .replace('BREAKPOINT', breakpoint)
 
-  "#{args.dest}/#{file}"
+  "#{args.destDir}/#{file}"
 
 
 ###
