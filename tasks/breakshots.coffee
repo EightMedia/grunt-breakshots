@@ -51,7 +51,7 @@ module.exports = (grunt)->
     # Get path to phantomjs binary
     phantomjs =
       bin: require('phantomjs').path
-      script: 'phantomjs/render.coffee'
+      script: path.resolve(__dirname, '../phantomjs/render.coffee')
 
     # Process each filepath in-order.
     grunt.util.async.forEachSeries pages,
