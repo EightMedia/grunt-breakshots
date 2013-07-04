@@ -30,15 +30,28 @@ destFile = (breakpoint)->
 renderBreakpoints = (done)->
   next = ->
     if args.breakpoints.length
-      breakpoint = args.breakpoints.shift()
+      breakpoint = parseInt(args.breakpoints.shift(), 10)
 
       page.viewportSize =
-        width: parseInt(breakpoint,10)
+        width: breakpoint
         height: 100
 
       page.open args.source, (status)->
         window.setTimeout(->
             if status is "success"
+              size = page.evaluate (breakpoint)->
+                  document.querySelector('html').style.width = "#{breakpoint}px"
+
+                  width: document.body.clientWidth
+                  height: document.body.clientHeight
+                , breakpoint
+
+              page.clipRect =
+                top: 0
+                left: 0
+                width: breakpoint
+                height: size.height
+
               page.render destFile(breakpoint)
               next()
             else
@@ -46,7 +59,6 @@ renderBreakpoints = (done)->
           , 100)
     else
       done()
-
   next()
 
 
