@@ -55,5 +55,5 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-2013/07/04 - 0.1.1 - Fixed Phantomjs issue
-2013/07/03 - 0.1.0 - Initial
+- 2013/07/04 - 0.1.1 - Fixed Phantomjs issue
+- 2013/07/03 - 0.1.0 - Initial
