@@ -1,7 +1,7 @@
 {
   "name": "grunt-breakshots",
   "description": "Create screenshots of html files per breakpoint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/EightMedia/grunt-breakshots",
   "author": {
     "name": "J. Tangelder",
