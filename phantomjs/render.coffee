@@ -7,7 +7,7 @@ args =
   dest : system.args[4]
   source : system.args[5]
 
-webpage = require("webpage")
+webpage = require "webpage"
 page = webpage.create()
 
 
@@ -17,6 +17,7 @@ destFile = (breakpoint)->
     .replace('FILENAME', args.source.split("/").slice(-1))
     .replace('EXT', args.ext)
     .replace('BREAKPOINT', breakpoint)
+
   "#{args.dest}/#{file}"
 
 
@@ -27,7 +28,7 @@ destFile = (breakpoint)->
  param callbackFinal Function called after finishing everything
 ###
 renderBreakpoints = (done)->
-  next = ()->
+  next = ->
     if args.breakpoints.length
       breakpoint = args.breakpoints.shift()
 
@@ -50,7 +51,7 @@ renderBreakpoints = (done)->
 
 
 # gogogogo!
-renderBreakpoints ()->
+renderBreakpoints ->
   phantom.exit()
 
 

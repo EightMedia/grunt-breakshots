@@ -10,11 +10,11 @@
 
 module.exports = (grunt)->
 
-  path = require('path')
+  path = require 'path'
 
   # Please see the Grunt documentation for more information regarding task
   # creation: http://gruntjs.com/creating-tasks
-  grunt.registerMultiTask 'breakshots', 'Create screenshots of html files per breakpoint', ()->
+  grunt.registerMultiTask 'breakshots', 'Create screenshots of html files per breakpoint', ->
 
     # Merge task-specific and/or target-specific options with these defaults.
     options = @options
@@ -65,9 +65,9 @@ module.exports = (grunt)->
               options.pattern,
               page.dest,
               page.path]
-          , (err, result)->
+          , (err)->
             if err then done() else next()
       ,
       # All screenshots have been made
-      ()->
+      ->
         done()
