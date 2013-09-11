@@ -48,10 +48,7 @@ module.exports = (grunt)->
             dest: path.normalize("#{group.dest}/#{filename}.html")
       
       Array::push.apply pages, p    
-      
-    console.log pages
-    return
-    
+
     # Get path to phantomjs binary
     phantomjs =
       bin: require('phantomjs').path
