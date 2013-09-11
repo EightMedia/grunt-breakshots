@@ -9,7 +9,7 @@ html
     .nav
       ul
         for p in pages
-          li: a(href=p.filename)=p.filename
+          li: a(href="#{p.filename}.html")=p.filename
 
     .view
       ul
