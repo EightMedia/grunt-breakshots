@@ -19,7 +19,7 @@ grunt.loadNpmTasks('grunt-breakshots');
 
 #### options.breakpoints
 Type: `Array`
-Default value: `[240,320,480,640,700,768,1024,1280]`
+Default value: `[320,480,640,768,1024,1200]`
 
 #### options.ext
 Type: `String`
