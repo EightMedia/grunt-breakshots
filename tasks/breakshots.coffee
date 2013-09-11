@@ -6,14 +6,12 @@
   Licensed under the MIT license.
 ###
 
-'use strict'
+path = require 'path'
+jade = require 'jade'
+fs = require 'fs'
 
 module.exports = (grunt)->
-
-  path = require 'path'
-  jade = require 'jade'
-  fs = require 'fs'
-
+  
   # Please see the Grunt documentation for more information regarding task
   # creation: http://gruntjs.com/creating-tasks
   grunt.registerMultiTask 'breakshots', 'Create screenshots of html files per breakpoint', ->
@@ -24,10 +22,9 @@ module.exports = (grunt)->
     # Merge task-specific and/or target-specific options with these defaults.
     options = @options
       cwd: '.'
+      url: 'http://localhost:8000/'
       ext: 'png'
-      pattern: "FILENAME.BREAKPOINT.EXT"
       breakpoints: [240,320,480,640,700,768,1024,1280]
-
 
     # Keeps all pages
     pages = []
@@ -41,18 +38,18 @@ module.exports = (grunt)->
             if not grunt.file.exists(filepath) or not grunt.file.isFile(filepath)
               return false
             true
-
+  
           .map (filepath)->
-            filename = path.relative(options.cwd, filepath).replace(/\//g, "-")
-
-            destDir: group.dest
-            destPath: path.normalize("#{group.dest}/#{filename}")
-            filename: filename
-            path: filepath
-
-      Array::push.apply pages, p
-
-
+            filepath = path.relative(options.cwd, filepath)
+            filename = filepath.split(path.sep).join(".")
+            
+            url: options.url + filepath,
+            filename: filename,
+            dest: path.normalize("#{group.dest}/#{filename}") 
+      
+      Array::push.apply pages, p    
+      
+      
     # Get path to phantomjs binary
     phantomjs =
       bin: require('phantomjs').path
@@ -68,10 +65,8 @@ module.exports = (grunt)->
               phantomjs.script,
               options.ext,
               options.breakpoints.join(","),
-              options.pattern,
-              page.destDir,
-              page.filename,
-              page.path]
+              page.dest,
+              page.url]
           , (err)->
             if err then done() else next()
       ,
@@ -93,12 +88,10 @@ module.exports = (grunt)->
         for size in options.breakpoints
           item.breakpoints.push
             size: size,
-            file: options.pattern
-              .replace('FILENAME', item.filename)
-              .replace('BREAKPOINT', size)
-              .replace('EXT', options.ext)
+            file: item.filename
 
         compiled = fn
           pages: pages,
+          options: options,
           item: item
-        fs.writeFileSync(item.destPath, compiled, {encoding:'utf8'})
+        fs.writeFileSync(item.dest, compiled, {encoding:'utf8'})

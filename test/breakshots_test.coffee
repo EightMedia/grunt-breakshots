@@ -37,8 +37,8 @@ exports.breakshots =
 
     # create expected files array
     expected_files_patterns = [
-      'subdir-subtest.html.BREAKPOINT.png'
-      'subdir-subtest2.html.BREAKPOINT.png'
+      'subdir.subtest.html.BREAKPOINT.png'
+      'subdir.subtest2.html.BREAKPOINT.png'
       'test.html.BREAKPOINT.png'
       'test2.html.BREAKPOINT.png'
     ]
@@ -47,8 +47,8 @@ exports.breakshots =
     for f in expected_files_patterns
       expected.push f.replace('BREAKPOINT', breakpoint) for breakpoint in [240,320,480,640,700,768,1024,1280]
 
-    expected.push('subdir-subtest.html')
-    expected.push('subdir-subtest2.html')
+    expected.push('subdir.subtest.html')
+    expected.push('subdir.subtest2.html')
     expected.push('test.html')
     expected.push('test2.html')
 

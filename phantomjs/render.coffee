@@ -3,23 +3,11 @@ system = require "system"
 args =
   ext: system.args[1]
   breakpoints: system.args[2].split(",")
-  pattern : system.args[3]
-  destDir : system.args[4]
-  destFilename : system.args[5]
-  source : system.args[6]
+  dest : system.args[3]
+  url : system.args[4]
 
 webpage = require "webpage"
 page = webpage.create()
-
-
-# get destination filename
-destFile = (breakpoint)->
-  file = args.pattern
-    .replace('FILENAME', args.destFilename)
-    .replace('EXT', args.ext)
-    .replace('BREAKPOINT', breakpoint)
-
-  "#{args.destDir}/#{file}"
 
 
 ###
@@ -37,7 +25,7 @@ renderBreakpoints = (done)->
         width: breakpoint
         height: 100
 
-      page.open args.source, (status)->
+      page.open args.url, (status)->
         window.setTimeout(->
             if status is "success"
               size = page.evaluate (breakpoint)->
@@ -53,7 +41,7 @@ renderBreakpoints = (done)->
                 width: breakpoint
                 height: size.height
 
-              page.render destFile(breakpoint)
+              page.render "#{args.dest}.#{breakpoint}.#{args.ext}"
               next()
             else
               next()

@@ -16,4 +16,4 @@ html
         for breakpoint in item.breakpoints
           li
             h3=breakpoint.size
-            img(src=breakpoint.file, width=breakpoint.size)
+            img(src="#{breakpoint.file}.#{breakpoint.size}.#{options.ext}", width=breakpoint.size)
