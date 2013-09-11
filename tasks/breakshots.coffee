@@ -24,7 +24,7 @@ module.exports = (grunt)->
       cwd: '.'
       url: 'http://localhost:8000/'
       ext: 'png'
-      breakpoints: [320]#,480,640,768,1024,1200]
+      breakpoints: [320,480,640,768,1024,1200]
 
     # Keeps all pages
     pages = []
