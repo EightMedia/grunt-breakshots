@@ -45,11 +45,13 @@ module.exports = (grunt)->
             
             url: options.url + filepath,
             filename: filename,
-            dest: path.normalize("#{group.dest}/#{filename}") 
+            dest: path.normalize("#{group.dest}/#{filename}.html")
       
       Array::push.apply pages, p    
       
-      
+    console.log pages
+    return
+    
     # Get path to phantomjs binary
     phantomjs =
       bin: require('phantomjs').path
@@ -68,7 +70,12 @@ module.exports = (grunt)->
               page.dest,
               page.url]
           , (err)->
-            if err then done() else next()
+            if err 
+              console.error err
+              done() 
+            else 
+              console.log "Rendered #{page.filename}"
+              next()
       ,
       # All screenshots have been made
       ->
@@ -95,3 +102,5 @@ module.exports = (grunt)->
           options: options,
           item: item
         fs.writeFileSync(item.dest, compiled, {encoding:'utf8'})
+        
+        console.log "Generated #{item.dest}"
