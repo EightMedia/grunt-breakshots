@@ -98,6 +98,6 @@ module.exports = (grunt)->
           pages: pages,
           options: options,
           item: item
-        fs.writeFileSync("#{item.dest}.html", compiled, {encoding:'utf8'})
+        fs.writeFileSync("#{item.dest}.html", compiled)
         
         console.log "Generated #{item.dest}.html"
